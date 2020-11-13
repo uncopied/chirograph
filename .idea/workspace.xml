@@ -20,54 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a8c8f498-51d0-44cb-9660-c2196ec3d8a9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/canvas_out.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/canvas_out_7x7.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/canvas_out_9x7.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fonts/Montserrat-Black.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fonts/Montserrat-BlackItalic.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fonts/Montserrat-Bold.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fonts/Montserrat-BoldItalic.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fonts/Montserrat-ExtraBold.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fonts/Montserrat-ExtraBoldItalic.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fonts/Montserrat-ExtraLight.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fonts/Montserrat-ExtraLightItalic.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fonts/Montserrat-Italic.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fonts/Montserrat-Light.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fonts/Montserrat-LightItalic.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fonts/Montserrat-Medium.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fonts/Montserrat-MediumItalic.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fonts/Montserrat-Regular.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fonts/Montserrat-SemiBold.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fonts/Montserrat-SemiBoldItalic.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fonts/Montserrat-Thin.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fonts/Montserrat-ThinItalic.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/license/Montserrat_OFL.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fonts/KurintoBook-Bd.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fonts/KurintoBook-BdIt.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fonts/KurintoBook-It.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fonts/KurintoBook-Rg.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fonts/KurintoMono-Bd.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fonts/KurintoMono-BdIt.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fonts/KurintoMono-It.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fonts/KurintoMono-NarBd.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fonts/KurintoMono-NarBdIt.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fonts/KurintoMono-NarIt.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fonts/KurintoMono-NarRg.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fonts/KurintoMono-Rg.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fonts/KurintoSans-Bd.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fonts/KurintoSans-BdIt.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fonts/KurintoSans-It.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fonts/KurintoSans-Rg.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fonts/KurintoSeri-Bd.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fonts/KurintoSeri-BdIt.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fonts/KurintoSeri-It.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fonts/KurintoSeri-Rg.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fonts/KurintoText-Bd.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fonts/KurintoText-BdIt.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fonts/KurintoText-It.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fonts/KurintoText-Rg.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/license/kurinto_License.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/tallystick.go" beforeDir="false" afterPath="$PROJECT_DIR$/tallystick.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -102,7 +55,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="go.import.settings.migrated" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../canvas" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -154,22 +107,26 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1877" height="295" key="GridCell.Tab.0.bottom" timestamp="1605213128036">
+    <state x="740" y="295" key="FileChooserDialogImpl" timestamp="1605269061547">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="295" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1605213128036" />
-    <state width="1877" height="295" key="GridCell.Tab.0.center" timestamp="1605213128036">
+    <state x="740" y="295" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1605269061547" />
+    <state width="1877" height="295" key="GridCell.Tab.0.bottom" timestamp="1605272358460">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="295" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1605213128036" />
-    <state width="1877" height="295" key="GridCell.Tab.0.left" timestamp="1605213128036">
+    <state width="1877" height="295" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1605272358460" />
+    <state width="1877" height="295" key="GridCell.Tab.0.center" timestamp="1605272358460">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="295" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1605213128036" />
-    <state width="1877" height="295" key="GridCell.Tab.0.right" timestamp="1605213128036">
+    <state width="1877" height="295" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1605272358460" />
+    <state width="1877" height="295" key="GridCell.Tab.0.left" timestamp="1605272358460">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="295" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1605213128036" />
+    <state width="1877" height="295" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1605272358460" />
+    <state width="1877" height="295" key="GridCell.Tab.0.right" timestamp="1605272358460">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="295" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1605272358460" />
     <state width="1877" height="363" key="GridCell.Tab.1.bottom" timestamp="1605197378404">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
