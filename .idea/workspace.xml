@@ -20,10 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a8c8f498-51d0-44cb-9660-c2196ec3d8a9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/canvas_out.eps" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/canvas_out.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rand.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/canvas_out_9x7.svg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/tallystick.go" beforeDir="false" afterPath="$PROJECT_DIR$/tallystick.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -58,7 +56,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="go.import.settings.migrated" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../canvas" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../barcode" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -67,11 +65,27 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
   </component>
   <component name="RunManager" selected="Go Build.go build tallystick.go">
+    <configuration name="go build barcode128.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="tallystick" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/barcode128.go" />
+      <directory value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
     <configuration name="go build main.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="tallystick" />
       <working_directory value="$PROJECT_DIR$" />
       <kind value="FILE" />
       <filePath value="$PROJECT_DIR$/tallystick/main.go" />
+      <directory value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build rand.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="tallystick" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/rand.go" />
       <directory value="$PROJECT_DIR$" />
       <method v="2" />
     </configuration>
@@ -86,6 +100,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Go Build.go build tallystick.go" />
+        <item itemvalue="Go Build.go build rand.go" />
+        <item itemvalue="Go Build.go build barcode128.go" />
         <item itemvalue="Go Build.go build main.go" />
       </list>
     </recent_temporary>
@@ -110,26 +126,26 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="740" y="295" key="FileChooserDialogImpl" timestamp="1605269061547">
+    <state x="740" y="295" key="FileChooserDialogImpl" timestamp="1605546724435">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="740" y="295" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1605269061547" />
-    <state width="1877" height="295" key="GridCell.Tab.0.bottom" timestamp="1605546139903">
+    <state x="740" y="295" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1605546724435" />
+    <state width="1877" height="295" key="GridCell.Tab.0.bottom" timestamp="1605565019779">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="295" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1605546139903" />
-    <state width="1877" height="295" key="GridCell.Tab.0.center" timestamp="1605546139903">
+    <state width="1877" height="295" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1605565019779" />
+    <state width="1877" height="295" key="GridCell.Tab.0.center" timestamp="1605565019779">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="295" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1605546139903" />
-    <state width="1877" height="295" key="GridCell.Tab.0.left" timestamp="1605546139903">
+    <state width="1877" height="295" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1605565019779" />
+    <state width="1877" height="295" key="GridCell.Tab.0.left" timestamp="1605565019779">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="295" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1605546139903" />
-    <state width="1877" height="295" key="GridCell.Tab.0.right" timestamp="1605546139903">
+    <state width="1877" height="295" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1605565019779" />
+    <state width="1877" height="295" key="GridCell.Tab.0.right" timestamp="1605565019779">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="295" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1605546139903" />
+    <state width="1877" height="295" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1605565019779" />
     <state width="1877" height="363" key="GridCell.Tab.1.bottom" timestamp="1605197378404">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -146,13 +162,13 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1877" height="363" key="GridCell.Tab.1.right/0.0.1920.1080@0.0.1920.1080" timestamp="1605197378404" />
-    <state width="498" height="446" key="SwitcherDM" timestamp="1605104334630">
+    <state width="498" height="446" key="SwitcherDM" timestamp="1605547271131">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="498" height="446" key="SwitcherDM/0.0.1920.1080@0.0.1920.1080" timestamp="1605104334630" />
-    <state x="623" y="235" key="search.everywhere.popup" timestamp="1605109208467">
+    <state width="498" height="446" key="SwitcherDM/0.0.1920.1080@0.0.1920.1080" timestamp="1605547271131" />
+    <state x="623" y="235" width="672" height="678" key="search.everywhere.popup" timestamp="1605553658164">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="623" y="235" key="search.everywhere.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1605109208467" />
+    <state x="623" y="235" width="672" height="678" key="search.everywhere.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1605553658164" />
   </component>
 </project>
