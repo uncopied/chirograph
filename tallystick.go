@@ -15,14 +15,15 @@ import (
 
 const (
 	// block explaining where to mail to
-	mailToContent = "Mail to :\nun©opied\nPO XXX\n78XXX Versailles\n France"
-	barCode128Content = "970e1687-ba6b-410d-bb74-6e23d5291fef"
-	fontFamily              = "Montserrat"
-	fontFileRegular         = "fonts/Montserrat-Regular.ttf"
-	fontFileBold            = "fonts/Montserrat-Bold.ttf"
-	fontSize                = 8.0
-	pageWidth       float64 = 297 //210 // A4 = 297 x 210
-	pageHeight      float64 = 210 //297 // A4 = 297 x 210
+	mailToContent              = "Mail to :\nUNCOPIED\nPO XXX\n78XXX Cedex\nVersailles\n France"
+	primaryCodeContent         = "uncopied.org/970e1687-ba6b-410d-bb74-6e23d5291fef"
+	fontFamily                 = "Montserrat"
+	fontFileRegular            = "fonts/Montserrat-Regular.ttf"
+	fontFileBold               = "fonts/Montserrat-Bold.ttf"
+	fontSizeNormal             = 8.0
+	fontSizeSmall              = 6.0
+	pageWidth          float64 = 297 //210 // A4 = 297 x 210
+	pageHeight         float64 = 210 //297 // A4 = 297 x 210
 
 	// random cutline bands
 	randCutWidth=0.1
@@ -49,7 +50,7 @@ const (
 	blockHeightPortrait = blockWidth
 
 	// qrblock margin
-	qrBlockInnerMargin = 0.1
+	qrBlockInnerMargin = 0.2
 	// code128 margin
 	codeBlockInnerMargin = 0.1
 	// draw tally
@@ -62,7 +63,7 @@ const (
 
 func drawUncopiedLogo(fontFamily *canvas.FontFamily, ctx *canvas.Context, hBlock float64, vBlock float64, rotate bool ) {
 	// Draw a comprehensive text box
-	face := fontFamily.Face(fontSize, canvas.Black, canvas.FontBold, canvas.FontNormal)
+	face := fontFamily.Face(fontSizeNormal, canvas.Black, canvas.FontBold, canvas.FontNormal)
 	rich := canvas.NewRichText()
 	rich.Add(face, mailToContent)
 	//metrics := face.Metrics()
@@ -87,26 +88,25 @@ func drawUncopiedLogo(fontFamily *canvas.FontFamily, ctx *canvas.Context, hBlock
 	}
 }
 
-func drawText(fontFamily *canvas.FontFamily, ctx *canvas.Context, hBlock float64, vBlock float64, wBlock float64, textContent string, rotate bool ) {
+func drawText(fontFamily *canvas.FontFamily, ctx *canvas.Context, hBlock float64, vBlock float64, wBlock float64, textContent string, rotate bool, hAlign canvas.TextAlign, vAlign canvas.TextAlign, whiteOrTransparent bool, fontSize float64) {
 	// Draw a comprehensive text box
 	face := fontFamily.Face(fontSize, canvas.Black, canvas.FontBold, canvas.FontNormal)
 	rich := canvas.NewRichText()
 	rich.Add(face, textContent)
 	//metrics := face.Metrics()
-
-	if colorize {
-		ctx.SetFillColor(canvas.Lightblue)
-	} else {
+	if whiteOrTransparent {
 		ctx.SetFillColor(canvas.White)
+	} else {
+		ctx.SetFillColor(canvas.Transparent)
 	}
 	if rotate {
 		ctx.Rotate(-90)
-		text := rich.ToText(wBlock*blockWidthPortrait, blockHeightPortrait, canvas.Center, canvas.Center, 0.0, 0.0)
+		text := rich.ToText(wBlock*blockWidthPortrait, blockHeightPortrait, hAlign, vAlign, 0.0, 0.0)
 		ctx.DrawPath(tallyXPortrait+(vBlocks-vBlock-1)*blockWidthPortrait, tallyYPortrait+hBlock*blockHeightPortrait, canvas.RoundedRectangle(blockWidthPortrait*wBlock, blockHeightPortrait, 1))
 		ctx.DrawText(tallyXPortrait+(vBlocks-vBlock-1)*blockWidthPortrait, tallyYPortrait+(hBlock+1)*blockHeightPortrait, text)
 		ctx.Rotate(90)
 	} else {
-		text := rich.ToText(wBlock*blockWidth, blockHeight, canvas.Center, canvas.Center, 0.0, 0.0)
+		text := rich.ToText(wBlock*blockWidth, blockHeight,  hAlign, vAlign, 0.0, 0.0)
 		ctx.DrawPath(tallyX+hBlock*blockWidth, tallyY+vBlock*blockHeight, canvas.RoundedRectangle(blockWidth*wBlock, blockHeight, 1))
 		ctx.DrawText(tallyX+hBlock*blockWidth, tallyY+(vBlock+1)*blockHeight, text)
 	}
@@ -250,21 +250,21 @@ func drawQRCode(ctx *canvas.Context, hBlock float64, vBlock float64, content str
 }
 
 func drawTally(fontFamily *canvas.FontFamily, ctx *canvas.Context) {
-	myTextContent := "Origin from Wikidata\nElian Carsenat, 11-2020 (1/15)"
+	myTextContent := "Portrait of a Lady\nGreat Artist Name, 11-2020 (1/15)"
 
-	drawBarCode128(ctx,0,6,7, 2-codeBlockInnerMargin, barCode128Content,true)
-	drawBarCode128(ctx,7+codeBlockInnerMargin,6,7, 2-codeBlockInnerMargin, barCode128Content,true)
-	drawBarCode128(ctx,2,0,5, 1, barCode128Content,false)
-	drawBarCode128(ctx,2,2,5, 1, barCode128Content,false)
-	drawBarCode128(ctx,2,4,5, 1, barCode128Content,false)
-	drawBarCode128(ctx,2,6,5, 1, barCode128Content,false)
+	drawBarCode128(ctx,0,6,7, 2-codeBlockInnerMargin, primaryCodeContent,true)
+	drawBarCode128(ctx,7+codeBlockInnerMargin,6,7, 2-codeBlockInnerMargin, primaryCodeContent,true)
+	drawBarCode128(ctx,2,0,5, 1, primaryCodeContent,false)
+	drawBarCode128(ctx,2,2,5, 1, primaryCodeContent,false)
+	drawBarCode128(ctx,2,4,5, 1, primaryCodeContent,false)
+	drawBarCode128(ctx,2,6,5, 1, primaryCodeContent,false)
 
-	drawText(fontFamily, ctx, 3, 1, 3, myTextContent, false)
-	drawText(fontFamily, ctx, 3, 3, 3,myTextContent, false)
-	drawText(fontFamily, ctx, 3, 5, 3,myTextContent,false)
+	drawText(fontFamily, ctx, 3, 1, 3, myTextContent, false, canvas.Center, canvas.Center, true, fontSizeNormal)
+	drawText(fontFamily, ctx, 3, 3, 3,myTextContent, false, canvas.Center, canvas.Center, true, fontSizeNormal)
+	drawText(fontFamily, ctx, 3, 5, 3,myTextContent,false, canvas.Center, canvas.Center, true, fontSizeNormal)
 
-	drawText(fontFamily, ctx, 0, 4, 3,myTextContent, true)
-	drawText(fontFamily, ctx, 8, 4, 3,myTextContent, true)
+	drawText(fontFamily, ctx, 0, 4, 3,myTextContent, true, canvas.Center, canvas.Center,true, fontSizeNormal)
+	drawText(fontFamily, ctx, 8, 4, 3,myTextContent, true, canvas.Center, canvas.Center,true, fontSizeNormal)
 
 
 	drawQRCode(ctx, 2, 5, "uncopied-A1", false)
@@ -298,6 +298,10 @@ func drawTally(fontFamily *canvas.FontFamily, ctx *canvas.Context) {
 	drawUncopiedLogo(fontFamily, ctx, 0, 5, true)
 	drawUncopiedLogo(fontFamily, ctx, 8, 1, false)
 	drawUncopiedLogo(fontFamily, ctx, 8, 5, true)
+
+	drawText(fontFamily, ctx, 6, 1, 1, primaryCodeContent, false, canvas.Right, canvas.Bottom, false, fontSizeSmall)
+	drawText(fontFamily, ctx, 6, 3, 1, primaryCodeContent, false, canvas.Right, canvas.Bottom,false, fontSizeSmall)
+	drawText(fontFamily, ctx, 6, 5, 1, primaryCodeContent,false,  canvas.Right, canvas.Bottom,false, fontSizeSmall)
 
 	drawCutLine(ctx)
 }
