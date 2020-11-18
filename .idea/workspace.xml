@@ -21,7 +21,6 @@
   <component name="ChangeListManager">
     <list default="true" id="a8c8f498-51d0-44cb-9660-c2196ec3d8a9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tallystick.go" beforeDir="false" afterPath="$PROJECT_DIR$/tallystick.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +54,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="go.import.settings.migrated" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../barcode" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../uncopier" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -125,10 +124,10 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="740" y="295" key="FileChooserDialogImpl" timestamp="1605546724435">
+    <state x="740" y="295" key="FileChooserDialogImpl" timestamp="1605695954137">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="740" y="295" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1605546724435" />
+    <state x="740" y="295" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1605695954137" />
     <state width="1877" height="295" key="GridCell.Tab.0.bottom" timestamp="1605614309201">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
