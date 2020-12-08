@@ -3,13 +3,17 @@ package main
 import (
 	"flag"
 	"fmt"
+	"github.com/tdewolff/canvas/pdf"
+	"github.com/tdewolff/canvas/svg"
+	"github.com/uncopied/tallystick"
+	"log"
 	"os"
 	"strings"
 )
 
 func main() {
 	outFile := flag.String("o", "out", "output file prefix, empty for stdout")
-	outFormat := flag.String("f", "svg", "output file format (svg or pdf)")
+	outFormat := flag.String("f", "pdf", "output file format (svg or pdf)")
 	flag.Usage = func() {
 		fmt.Fprintf(os.Stderr, `tallystick secured document in Go
 https://github.com/uncopied/tallystick
@@ -20,27 +24,40 @@ Flags:
 		fmt.Fprintf(os.Stderr, `
 Usage:
   	tallystick -o pdf "hello world"
-
 `)
 	}
 	flag.Parse()
 
+	content := "hello world!"
 	if len(flag.Args()) == 0 {
 		flag.Usage()
-		checkError(fmt.Errorf("Error: no content given"))
+	} else {
+		content = strings.Join(flag.Args(), " ")
 	}
 
-	content := strings.Join(flag.Args(), " ")
 
-
-	if *outFile == "" {
-		os.Stdout.WriteString(content)
+	t := tallystick.Tallystick{
+		CertificateLabel:                content,
+		PrimaryLinkURL:                  "PrimaryLinkURL",
+		SecondaryLinkURL:                "SecondaryLinkURL",
+		IssuerTokenURL:                  "IssuerTokenURL",
+		OwnerTokenURL:                   "OwnerTokenURL",
+		PrimaryAssetVerifierTokenURL:    "PrimaryAssetVerifierTokenURL",
+		SecondaryAssetVerifierTokenURL:  "SecondaryAssetVerifierTokenURL",
+		PrimaryOwnerVerifierTokenURL:    "PrimaryOwnerVerifierTokenURL",
+		SecondaryOwnerVerifierTokenURL:  "SecondaryOwnerVerifierTokenURL",
+		PrimaryIssuerVerifierTokenURL:   "PrimaryIssuerVerifierTokenURL",
+		SecondaryIssuerVerifierTokenURL: "SecondaryIssuerVerifierTokenURL",
+		MailToContentLeft:               "MailToContentLeft",
+		MailToContentRight:              "MailToContentRight",
+	}
+	c := tallystick.Draw(&t)
+	if *outFormat == "pdf" {
+		c.WriteFile(*outFile+".pdf", pdf.Writer)
+	} else if *outFormat == "svg" {
+		c.WriteFile(*outFile+".svg", svg.Writer)
 	} else {
-		fh, err := os.Create(*outFile + "."+ *outFormat)
-		checkError(err)
-		defer fh.Close()
-		fh.WriteString(content)
-		fh.Close()
+		log.Fatal("unexpected format")
 	}
 }
 

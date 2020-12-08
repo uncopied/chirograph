@@ -1,22 +1,19 @@
-package main
+package tallystick
 
 import (
 	"github.com/boombuler/barcode/code128"
 	"github.com/tdewolff/canvas"
-	"github.com/tdewolff/canvas/eps"
 	"github.com/tdewolff/canvas/pdf"
-	"github.com/tdewolff/canvas/rasterizer"
 	"github.com/tdewolff/canvas/svg"
 	qrcode "github.com/uncopied/go-qrcode"
+	"io"
 	"log"
 	"math"
 	"math/rand"
 )
 
 const (
-	// block explaining where to mail to
-	mailToContent              = "Mail to :\nUNCOPIED\nPO XXX\n78XXX Cedex\nVersailles\n France"
-	primaryCodeContent         = "uncopied.org/970e1687-ba6b-410d-bb74-6e23d5291fef"
+
 	fontFamily                 = "Montserrat"
 	fontFileRegular            = "fonts/Montserrat-Regular.ttf"
 	fontFileBold               = "fonts/Montserrat-Bold.ttf"
@@ -44,7 +41,7 @@ const (
 	blockHeight = tallyHeight / vBlocks
 
 	// portrait
-	tallyXPortrait      = -pageHeight+tallyY
+	tallyXPortrait      = -pageHeight + tallyY
 	tallyYPortrait      = tallyX
 	blockWidthPortrait  = blockHeight
 	blockHeightPortrait = blockWidth
@@ -53,17 +50,38 @@ const (
 	qrBlockInnerMargin = 0.2
 	// code128 margin
 	codeBlockInnerMargin = 0.1
-	// draw tally
+	// Draw tally
 	drawTallyYesNo = true
-	// draw grids
+	// Draw grids
 	drawGrid = false
 	// colorize
 	colorize = false
 )
 
-func drawUncopiedLogo(fontFamily *canvas.FontFamily, ctx *canvas.Context, hBlock float64, vBlock float64, rotate bool ) {
+type Tallystick struct {
+
+	CertificateLabel string
+
+	PrimaryLinkURL string
+	SecondaryLinkURL string
+
+	IssuerTokenURL string
+	OwnerTokenURL string
+	PrimaryAssetVerifierTokenURL string
+	SecondaryAssetVerifierTokenURL string
+	PrimaryOwnerVerifierTokenURL string
+	SecondaryOwnerVerifierTokenURL string
+	PrimaryIssuerVerifierTokenURL string
+	SecondaryIssuerVerifierTokenURL string
+
+	MailToContentLeft string
+	MailToContentRight string
+
+}
+
+func drawUncopiedLogo(fontFamily *canvas.FontFamily, ctx *canvas.Context, hBlock float64, vBlock float64, rotate bool, mailToContent string ) {
 	// Draw a comprehensive text box
-	face := fontFamily.Face(fontSizeNormal, canvas.Black, canvas.FontBold, canvas.FontNormal)
+	face := fontFamily.Face(fontSizeSmall, canvas.Black, canvas.FontBold, canvas.FontNormal)
 	rich := canvas.NewRichText()
 	rich.Add(face, mailToContent)
 	//metrics := face.Metrics()
@@ -116,7 +134,7 @@ func drawBarCode128(ctx *canvas.Context, hBlock float64, vBlock float64, wBlock 
 	barCode, _ := code128.Encode(textContent)
 	if rotate {
 		ctx.Rotate(-90)
-		pixelWidth := blockWidthPortrait*wBlock/float64(barCode.Bounds().Max.X)
+		pixelWidth := blockWidthPortrait *wBlock/float64(barCode.Bounds().Max.X)
 		for i := 0; i < barCode.Bounds().Max.X; i++ {
 			c := barCode.At(i, 0)
 			ctx.SetFillColor(c)
@@ -124,7 +142,7 @@ func drawBarCode128(ctx *canvas.Context, hBlock float64, vBlock float64, wBlock 
 		}
 		ctx.Rotate(90)
 	} else {
-		pixelWidth := blockWidth*wBlock/float64(barCode.Bounds().Max.X)
+		pixelWidth := blockWidth *wBlock/float64(barCode.Bounds().Max.X)
 		for i := 0; i < barCode.Bounds().Max.X; i++ {
 			c := barCode.At(i, 0)
 			ctx.SetFillColor(c)
@@ -135,8 +153,8 @@ func drawBarCode128(ctx *canvas.Context, hBlock float64, vBlock float64, wBlock 
 
 func addRandomCenteredPoint(p *canvas.Polyline, hBlock float64, vBlock float64, topOrRight bool) [2]float64 {
 	var xy [2]float64
-	xy[0] = tallyX+hBlock*blockWidth+(0.5-randCutWidth*rand.Float64())*blockWidth
-	xy[1] = tallyY+vBlock*blockHeight+(0.5-randCutHeight*rand.Float64())*blockHeight
+	xy[0] = tallyX +hBlock*blockWidth +(0.5-randCutWidth*rand.Float64())*blockWidth
+	xy[1] = tallyY +vBlock*blockHeight +(0.5-randCutHeight*rand.Float64())*blockHeight
 	p.Add(xy[0], xy[1])
 	return xy
 }
@@ -144,20 +162,20 @@ func addRandomCenteredPoint(p *canvas.Polyline, hBlock float64, vBlock float64, 
 func addRandomZigZagPoints(p *canvas.Polyline, hBlock float64, vBlock float64, topOrRight bool) [2]float64 {
 	if topOrRight {
 		var xy [2]float64
-		xy[0] = tallyX+hBlock*blockWidth+(0.5+randSideStep+randCutWidth*randCutWidth*rand.Float64())*blockWidth
-		xy[1] = tallyY+vBlock*blockHeight+(0.25-randCutHeight*rand.Float64())*blockHeight
+		xy[0] = tallyX +hBlock*blockWidth +(0.5+randSideStep+randCutWidth*randCutWidth*rand.Float64())*blockWidth
+		xy[1] = tallyY +vBlock*blockHeight +(0.25-randCutHeight*rand.Float64())*blockHeight
 		p.Add(xy[0], xy[1])
-		xy[0] = tallyX+hBlock*blockWidth+(0.5-randSideStep-randCutWidth*randCutWidth*rand.Float64())*blockWidth
-		xy[1] = tallyY+vBlock*blockHeight+(0.75+randCutHeight*rand.Float64())*blockHeight
+		xy[0] = tallyX +hBlock*blockWidth +(0.5-randSideStep-randCutWidth*randCutWidth*rand.Float64())*blockWidth
+		xy[1] = tallyY +vBlock*blockHeight +(0.75+randCutHeight*rand.Float64())*blockHeight
 		p.Add(xy[0], xy[1])
 		return xy
 	} else {
 		var xy [2]float64
-		xy[0] = tallyX+hBlock*blockWidth+(0.25-randCutWidth*rand.Float64())*blockWidth
-		xy[1] = tallyY+vBlock*blockHeight+(0.5+randSideStep+randCutHeight*rand.Float64())*blockHeight
+		xy[0] = tallyX +hBlock*blockWidth +(0.25-randCutWidth*rand.Float64())*blockWidth
+		xy[1] = tallyY +vBlock*blockHeight +(0.5+randSideStep+randCutHeight*rand.Float64())*blockHeight
 		p.Add(xy[0], xy[1])
-		xy[0] = tallyX+hBlock*blockWidth+(0.75+randCutWidth*rand.Float64())*blockWidth
-		xy[1] = tallyY+vBlock*blockHeight+(0.5-randSideStep-randCutHeight*rand.Float64())*blockHeight
+		xy[0] = tallyX +hBlock*blockWidth +(0.75+randCutWidth*rand.Float64())*blockWidth
+		xy[1] = tallyY +vBlock*blockHeight +(0.5-randSideStep-randCutHeight*rand.Float64())*blockHeight
 		p.Add(xy[0], xy[1])
 		return xy
 	}
@@ -177,7 +195,7 @@ func drawCutLine(ctx *canvas.Context) {
 	ctx.DrawPath(0, 0, polyline.ToPath())
 	// create the 4 random points
 
-	//draw left
+	//Draw left
 	polyline = &canvas.Polyline{}
 	polyline.Add(tallyX+blockWidth*1.5, tallyY)
 	addRandomZigZagPoints(polyline, 1,0, true)
@@ -190,9 +208,7 @@ func drawCutLine(ctx *canvas.Context) {
 	polyline.Add(tallyX+blockWidth*1.5, tallyY+blockHeight*vBlocks)
 	ctx.DrawPath(0, 0, polyline.ToPath())
 
-
-
-	//draw right
+	//Draw right
 	polyline = &canvas.Polyline{}
 	polyline.Add(tallyX+blockWidth*7.5, tallyY)
 	addRandomZigZagPoints(polyline, 7,0,true)
@@ -205,7 +221,7 @@ func drawCutLine(ctx *canvas.Context) {
 	polyline.Add(tallyX+blockWidth*7.5, tallyY+blockHeight*vBlocks)
 	ctx.DrawPath(0, 0, polyline.ToPath())
 
-	//draw bottom
+	//Draw bottom
 	polyline = &canvas.Polyline{}
 	polyline.Add(cbd1[0], cbd1[1])
 	addRandomZigZagPoints(polyline, 2,2,false)
@@ -216,7 +232,7 @@ func drawCutLine(ctx *canvas.Context) {
 	polyline.Add(cbd2[0], cbd2[1])
 	ctx.DrawPath(0, 0, polyline.ToPath())
 
-	//draw bottom
+	//Draw bottom
 	polyline = &canvas.Polyline{}
 	polyline.Add(abd1[0], abd1[1])
 	addRandomZigZagPoints(polyline, 2,4,false)
@@ -249,65 +265,79 @@ func drawQRCode(ctx *canvas.Context, hBlock float64, vBlock float64, content str
 	}
 }
 
-func drawTally(fontFamily *canvas.FontFamily, ctx *canvas.Context) {
-	myTextContent := "Portrait of a Lady\nGreat Artist Name, 11-2020 (1/15)"
+func drawTally(fontFamily *canvas.FontFamily, ctx *canvas.Context, t *Tallystick) {
 
-	drawBarCode128(ctx,0,6,7, 2-codeBlockInnerMargin, primaryCodeContent,true)
-	drawBarCode128(ctx,7+codeBlockInnerMargin,6,7, 2-codeBlockInnerMargin, primaryCodeContent,true)
-	drawBarCode128(ctx,2,0,5, 1, primaryCodeContent,false)
-	drawBarCode128(ctx,2,2,5, 1, primaryCodeContent,false)
-	drawBarCode128(ctx,2,4,5, 1, primaryCodeContent,false)
-	drawBarCode128(ctx,2,6,5, 1, primaryCodeContent,false)
+	drawBarCode128(ctx,0,6,7, 2-codeBlockInnerMargin, t.PrimaryLinkURL,true)
+	drawBarCode128(ctx,7+codeBlockInnerMargin,6,7, 2-codeBlockInnerMargin, t.PrimaryLinkURL,true)
+	drawBarCode128(ctx,2,0,5, 1, t.PrimaryLinkURL,false)
+	drawBarCode128(ctx,2,2,5, 1, t.PrimaryLinkURL,false)
+	drawBarCode128(ctx,2,4,5, 1, t.PrimaryLinkURL,false)
+	drawBarCode128(ctx,2,6,5, 1, t.PrimaryLinkURL,false)
 
-	drawText(fontFamily, ctx, 3, 1, 3, myTextContent, false, canvas.Center, canvas.Center, true, fontSizeNormal)
-	drawText(fontFamily, ctx, 3, 3, 3,myTextContent, false, canvas.Center, canvas.Center, true, fontSizeNormal)
-	drawText(fontFamily, ctx, 3, 5, 3,myTextContent,false, canvas.Center, canvas.Center, true, fontSizeNormal)
+	drawText(fontFamily, ctx, 3, 1, 3, t.CertificateLabel, false, canvas.Center, canvas.Center, true, fontSizeNormal)
+	drawText(fontFamily, ctx, 3, 3, 3, t.CertificateLabel, false, canvas.Center, canvas.Center, true, fontSizeNormal)
+	drawText(fontFamily, ctx, 3, 5, 3, t.CertificateLabel,false, canvas.Center, canvas.Center, true, fontSizeNormal)
 
-	drawText(fontFamily, ctx, 0, 4, 3,myTextContent, true, canvas.Center, canvas.Center,true, fontSizeNormal)
-	drawText(fontFamily, ctx, 8, 4, 3,myTextContent, true, canvas.Center, canvas.Center,true, fontSizeNormal)
+	drawText(fontFamily, ctx, 0, 4, 3, t.CertificateLabel, true, canvas.Center, canvas.Center,true, fontSizeNormal)
+	drawText(fontFamily, ctx, 8, 4, 3, t.CertificateLabel, true, canvas.Center, canvas.Center,true, fontSizeNormal)
 
 
-	drawQRCode(ctx, 2, 5, "uncopied-A1", false)
-	drawQRCode(ctx, 6, 5, "uncopied-A2", false)
+	drawQRCode(ctx, 2, 5, t.PrimaryLinkURL, false)
+	drawQRCode(ctx, 6, 5, t.SecondaryLinkURL, false)
 
-	drawQRCode(ctx, 4, 4, "uncopied-AB", false)
+	drawQRCode(ctx, 4, 4, t.IssuerTokenURL, false)
 
-	drawQRCode(ctx, 2, 3, "uncopied-B1", false)
-	drawQRCode(ctx, 6, 3, "uncopied-B2", false)
+	drawQRCode(ctx, 2, 3, t.PrimaryLinkURL, false)
+	drawQRCode(ctx, 6, 3, t.SecondaryLinkURL, false)
 
-	drawQRCode(ctx, 4, 2, "uncopied-BC", false)
+	drawQRCode(ctx, 4, 2, t.OwnerTokenURL, false)
 
-	drawQRCode(ctx, 2, 1, "uncopied-C1", false)
-	drawQRCode(ctx, 6, 1, "uncopied-C2", false)
+	drawQRCode(ctx, 2, 1, t.PrimaryLinkURL, false)
+	drawQRCode(ctx, 6, 1, t.SecondaryLinkURL, false)
 
-	drawQRCode(ctx, 1, 5, "uncopied-D1A", false)
-	drawQRCode(ctx, 1, 3, "uncopied-D1B", false)
-	drawQRCode(ctx, 1, 1, "uncopied-D1C", false)
+	drawQRCode(ctx, 1, 5, t.PrimaryIssuerVerifierTokenURL, false)
+	drawQRCode(ctx, 1, 3, t.PrimaryAssetVerifierTokenURL, false)
+	drawQRCode(ctx, 1, 1, t.PrimaryOwnerVerifierTokenURL, false)
 
-	drawQRCode(ctx, 7, 5, "uncopied-D2A", false)
-	drawQRCode(ctx, 7, 3, "uncopied-D2B", false)
-	drawQRCode(ctx, 7, 1, "uncopied-D2C", false)
+	drawQRCode(ctx, 7, 5, t.SecondaryIssuerVerifierTokenURL, false)
+	drawQRCode(ctx, 7, 3, t.SecondaryAssetVerifierTokenURL, false)
+	drawQRCode(ctx, 7, 1, t.SecondaryOwnerVerifierTokenURL, false)
 
-	drawQRCode(ctx, 0, 6, "uncopied-D11", true)
-	drawQRCode(ctx, 0, 0, "uncopied-D12", true)
+	drawQRCode(ctx, 0, 6, t.PrimaryLinkURL, true)
+	drawQRCode(ctx, 0, 0, t.SecondaryLinkURL, true)
 
-	drawQRCode(ctx, 8, 6, "uncopied-D21", true)
-	drawQRCode(ctx, 8, 0, "uncopied-D22", true)
+	drawQRCode(ctx, 8, 6, t.PrimaryLinkURL, true)
+	drawQRCode(ctx, 8, 0, t.SecondaryLinkURL, true)
 
-	drawUncopiedLogo(fontFamily, ctx, 0, 1, false)
-	drawUncopiedLogo(fontFamily, ctx, 0, 5, true)
-	drawUncopiedLogo(fontFamily, ctx, 8, 1, false)
-	drawUncopiedLogo(fontFamily, ctx, 8, 5, true)
+	drawUncopiedLogo(fontFamily, ctx, 0, 1, false, t.MailToContentLeft)
+	drawUncopiedLogo(fontFamily, ctx, 0, 5, true, t.MailToContentLeft)
+	drawUncopiedLogo(fontFamily, ctx, 8, 1, false,t.MailToContentRight)
+	drawUncopiedLogo(fontFamily, ctx, 8, 5, true, t.MailToContentRight)
 
-	drawText(fontFamily, ctx, 6, 1, 1, primaryCodeContent, false, canvas.Right, canvas.Bottom, false, fontSizeSmall)
-	drawText(fontFamily, ctx, 6, 3, 1, primaryCodeContent, false, canvas.Right, canvas.Bottom,false, fontSizeSmall)
-	drawText(fontFamily, ctx, 6, 5, 1, primaryCodeContent,false,  canvas.Right, canvas.Bottom,false, fontSizeSmall)
+	drawText(fontFamily, ctx, 6, 1, 1, t.PrimaryLinkURL, false, canvas.Right, canvas.Bottom, false, fontSizeSmall)
+	drawText(fontFamily, ctx, 6, 3, 1, t.PrimaryLinkURL, false, canvas.Right, canvas.Bottom,false, fontSizeSmall)
+	drawText(fontFamily, ctx, 6, 5, 1, t.PrimaryLinkURL,false,  canvas.Right, canvas.Bottom,false, fontSizeSmall)
 
 	drawCutLine(ctx)
 }
 
+func DrawSVG(t *Tallystick, w io.Writer) error {
+	c := Draw(t)
+	svg := svg.New(w, c.W, c.H)
+	c.Render(svg)
+	return svg.Close()
+}
 
-func main() {
+//c.WriteFile("canvas_out.svg", svg.Writer)
+//c.WriteFile("canvas_out.pdf", pdf.Writer)
+func DrawPDF(t *Tallystick, w io.Writer) error {
+	c := Draw(t)
+	pdf := pdf.New(w, c.W, c.H)
+	c.Render(pdf)
+	return pdf.Close()
+}
+
+func Draw(t *Tallystick) *canvas.Canvas {
 	c := canvas.New(pageWidth, pageHeight)
 	ctx := canvas.NewContext(c)
 	fontFamily := canvas.NewFontFamily(fontFamily)
@@ -345,13 +375,14 @@ func main() {
 	}
 
 	if drawTallyYesNo {
-		drawTally(fontFamily,ctx)
+		drawTally(fontFamily,ctx,t)
 	}
 
+	return c
 	//p:=canvas.MustParseSVG(qrSVG)
 	//ctx.DrawPath(10,10,p)
-	c.WriteFile("canvas_out.svg", svg.Writer)
-	c.WriteFile("canvas_out.pdf", pdf.Writer)
-	c.WriteFile("canvas_out.eps", eps.Writer)
-	c.WriteFile("canvas_out.png", rasterizer.PNGWriter(3.2))
+	//c.WriteFile("canvas_out.svg", svg.Writer)
+	//c.WriteFile("canvas_out.pdf", pdf.Writer)
+	//c.WriteFile("canvas_out.eps", eps.Writer)
+	//c.WriteFile("canvas_out.png", rasterizer.PNGWriter(3.2))
 }
