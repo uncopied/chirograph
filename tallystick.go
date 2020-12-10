@@ -13,10 +13,10 @@ import (
 )
 
 const (
-
+	assetsFontsPath = "assets/fonts"
 	fontFamily                 = "Montserrat"
-	fontFileRegular            = "fonts/Montserrat-Regular.ttf"
-	fontFileBold               = "fonts/Montserrat-Bold.ttf"
+	fontFileRegular            = assetsFontsPath+"/Montserrat-Regular.ttf"
+	fontFileBold               = assetsFontsPath+"/Montserrat-Bold.ttf"
 	fontSizeNormal             = 8.0
 	fontSizeSmall              = 6.0
 	pageWidth          float64 = 297 //210 // A4 = 297 x 210
@@ -185,6 +185,7 @@ func drawCutLine(ctx *canvas.Context) {
 	ctx.SetFillColor(canvas.Transparent)
 	ctx.SetStrokeColor(canvas.Blue)
 	ctx.SetStrokeWidth(cutLineWidth)
+
 	// Draw around
 	polyline := &canvas.Polyline{}
 	polyline.Add(tallyX, tallyY)
@@ -314,9 +315,13 @@ func drawTally(fontFamily *canvas.FontFamily, ctx *canvas.Context, t *Tallystick
 	drawUncopiedLogo(fontFamily, ctx, 8, 1, false,t.MailToContentRight)
 	drawUncopiedLogo(fontFamily, ctx, 8, 5, true, t.MailToContentRight)
 
-	drawText(fontFamily, ctx, 6, 1, 1, t.PrimaryLinkURL, false, canvas.Right, canvas.Bottom, false, fontSizeSmall)
-	drawText(fontFamily, ctx, 6, 3, 1, t.PrimaryLinkURL, false, canvas.Right, canvas.Bottom,false, fontSizeSmall)
-	drawText(fontFamily, ctx, 6, 5, 1, t.PrimaryLinkURL,false,  canvas.Right, canvas.Bottom,false, fontSizeSmall)
+	drawText(fontFamily, ctx, 2, 1, 1, t.PrimaryLinkURL, false, canvas.Left, canvas.Top, false, fontSizeSmall)
+	drawText(fontFamily, ctx, 2, 3, 1, t.PrimaryLinkURL, false, canvas.Left, canvas.Top,false, fontSizeSmall)
+	drawText(fontFamily, ctx, 2, 5, 1, t.PrimaryLinkURL,false,  canvas.Left, canvas.Top,false, fontSizeSmall)
+
+	drawText(fontFamily, ctx, 6, 1, 1, t.SecondaryLinkURL, false, canvas.Right, canvas.Bottom, false, fontSizeSmall)
+	drawText(fontFamily, ctx, 6, 3, 1, t.SecondaryLinkURL, false, canvas.Right, canvas.Bottom,false, fontSizeSmall)
+	drawText(fontFamily, ctx, 6, 5, 1, t.SecondaryLinkURL,false,  canvas.Right, canvas.Bottom,false, fontSizeSmall)
 
 	drawCutLine(ctx)
 }
@@ -348,7 +353,6 @@ func Draw(t *Tallystick) *canvas.Canvas {
 	if err := fontFamily.LoadFontFile(fontFileBold, canvas.FontBold); err != nil {
 		panic(err)
 	}
-
 	// paint a grid on landscape
 	if drawGrid {
 		ctx.SetFillColor(canvas.Lightgray)
@@ -377,7 +381,6 @@ func Draw(t *Tallystick) *canvas.Canvas {
 	if drawTallyYesNo {
 		drawTally(fontFamily,ctx,t)
 	}
-
 	return c
 	//p:=canvas.MustParseSVG(qrSVG)
 	//ctx.DrawPath(10,10,p)

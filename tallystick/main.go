@@ -34,8 +34,6 @@ Usage:
 	} else {
 		content = strings.Join(flag.Args(), " ")
 	}
-
-
 	t := tallystick.Tallystick{
 		CertificateLabel:                content,
 		PrimaryLinkURL:                  "PrimaryLinkURL",
