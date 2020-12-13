@@ -10,13 +10,15 @@ import (
 	"log"
 	"math"
 	"math/rand"
+	"os"
 )
 
 const (
-	assetsFontsPath = "assets/fonts"
-	fontFamily                 = "Montserrat"
-	fontFileRegular            = assetsFontsPath+"/Montserrat-Regular.ttf"
-	fontFileBold               = assetsFontsPath+"/Montserrat-Bold.ttf"
+	//assetsFontsPath = "assets/fonts"
+	//fontFamily                 = "Montserrat"
+	//fontFileRegular            = assetsFontsPath+"/Montserrat-Regular.ttf"
+	//fontFileBold               = assetsFontsPath+"/Montserrat-Bold.ttf"
+
 	fontSizeNormal             = 8.0
 	fontSizeSmall              = 6.0
 	pageWidth          float64 = 297 //210 // A4 = 297 x 210
@@ -343,9 +345,18 @@ func DrawPDF(t *Tallystick, w io.Writer) error {
 }
 
 func Draw(t *Tallystick) *canvas.Canvas {
+	//assetsFontsPath = "assets/fonts"
+	assetsFontsPath := os.Getenv("ASSET_FONT_PATH")
+	if assetsFontsPath == "" {
+		assetsFontsPath = "assets/fonts"
+	}
+	fontFamilyName                 := "Montserrat"
+	fontFileRegular            := assetsFontsPath+"/"+fontFamilyName+"-Regular.ttf"
+	fontFileBold               := assetsFontsPath+"/"+fontFamilyName+"-Bold.ttf"
+
 	c := canvas.New(pageWidth, pageHeight)
 	ctx := canvas.NewContext(c)
-	fontFamily := canvas.NewFontFamily(fontFamily)
+	fontFamily := canvas.NewFontFamily(fontFamilyName)
 	fontFamily.Use(canvas.CommonLigatures)
 	if err := fontFamily.LoadFontFile(fontFileRegular, canvas.FontRegular); err != nil {
 		panic(err)
