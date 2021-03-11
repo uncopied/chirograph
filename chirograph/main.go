@@ -15,15 +15,14 @@ func main() {
 	outFile := flag.String("o", "out", "output file prefix, empty for stdout")
 	outFormat := flag.String("f", "pdf", "output file format (svg or pdf)")
 	flag.Usage = func() {
-		fmt.Fprintf(os.Stderr, `tallystick secured document in Go
-https://github.com/uncopied/tallystick
-
+		fmt.Fprintf(os.Stderr, `chirograph secured document in Go
+https://github.com/uncopied/chirograph
 Flags:
 `)
 		flag.PrintDefaults()
 		fmt.Fprintf(os.Stderr, `
 Usage:
-  	tallystick -o pdf "hello world"
+  	chirograph -o pdf "hello world"
 `)
 	}
 	flag.Parse()
@@ -34,7 +33,7 @@ Usage:
 	} else {
 		content = strings.Join(flag.Args(), " ")
 	}
-	t := tallystick.Tallystick{
+	t := chirograph.Chirograph{
 		CertificateLabel:                content,
 		PrimaryLinkURL:                  "PrimaryLinkURL",
 		SecondaryLinkURL:                "SecondaryLinkURL",
@@ -49,7 +48,7 @@ Usage:
 		MailToContentLeft:               "MailToContentLeft",
 		MailToContentRight:              "MailToContentRight",
 	}
-	c := tallystick.Draw(&t)
+	c := chirograph.Draw(&t)
 	if *outFormat == "pdf" {
 		c.WriteFile(*outFile+".pdf", pdf.Writer)
 	} else if *outFormat == "svg" {

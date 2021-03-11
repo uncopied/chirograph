@@ -1,4 +1,4 @@
-package tallystick
+package chirograph
 
 import (
 	"github.com/boombuler/barcode/code128"
@@ -60,7 +60,7 @@ const (
 	colorize = false
 )
 
-type Tallystick struct {
+type Chirograph struct {
 
 	CertificateLabel string
 
@@ -268,7 +268,7 @@ func drawQRCode(ctx *canvas.Context, hBlock float64, vBlock float64, content str
 	}
 }
 
-func drawTally(fontFamily *canvas.FontFamily, ctx *canvas.Context, t *Tallystick) {
+func drawTally(fontFamily *canvas.FontFamily, ctx *canvas.Context, t *Chirograph) {
 
 	drawBarCode128(ctx,0,6,7, 2-codeBlockInnerMargin, t.PrimaryLinkURL,true)
 	drawBarCode128(ctx,7+codeBlockInnerMargin,6,7, 2-codeBlockInnerMargin, t.PrimaryLinkURL,true)
@@ -328,7 +328,7 @@ func drawTally(fontFamily *canvas.FontFamily, ctx *canvas.Context, t *Tallystick
 	drawCutLine(ctx)
 }
 
-func DrawSVG(t *Tallystick, w io.Writer) error {
+func DrawSVG(t *Chirograph, w io.Writer) error {
 	c := Draw(t)
 	svg := svg.New(w, c.W, c.H)
 	c.Render(svg)
@@ -337,14 +337,14 @@ func DrawSVG(t *Tallystick, w io.Writer) error {
 
 //c.WriteFile("canvas_out.svg", svg.Writer)
 //c.WriteFile("canvas_out.pdf", pdf.Writer)
-func DrawPDF(t *Tallystick, w io.Writer) error {
+func DrawPDF(t *Chirograph, w io.Writer) error {
 	c := Draw(t)
 	pdf := pdf.New(w, c.W, c.H)
 	c.Render(pdf)
 	return pdf.Close()
 }
 
-func Draw(t *Tallystick) *canvas.Canvas {
+func Draw(t *Chirograph) *canvas.Canvas {
 	//assetsFontsPath = "assets/fonts"
 	assetsFontsPath := os.Getenv("ASSET_FONT_PATH")
 	if assetsFontsPath == "" {
