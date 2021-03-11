@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9f09129c-892f-4e54-94e0-8b6ae078d043" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/tallystick.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/chirograph.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chirograph.go" beforeDir="false" afterPath="$PROJECT_DIR$/chirograph.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chirograph/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/chirograph/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,62 +38,36 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\git\tallystick" />
+      <recent name="D:\git\chirograph" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\git\tallystick" />
+      <recent name="D:\git\chirograph" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Build.go build main.go fr">
+  <component name="RunManager">
     <configuration name="go build chirograph.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="chirograph" />
       <working_directory value="$PROJECT_DIR$" />
       <kind value="FILE" />
       <filePath value="$PROJECT_DIR$/chirograph.go" />
-      <package value="github.com/uncopied/tallystick" />
+      <package value="chirograph" />
       <directory value="$PROJECT_DIR$" />
       <method v="2" />
     </configuration>
     <configuration name="go build main.go fr" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
       <module name="chirograph" />
       <working_directory value="$PROJECT_DIR$" />
-      <parameters value="-o bonjour la France!" />
+      <parameters value="-o out Bonjour la France!" />
       <kind value="FILE" />
       <filePath value="$PROJECT_DIR$/chirograph/main.go" />
-      <package value="github.com/uncopied/tallystick" />
+      <package value="github.com/uncopied/chirograph" />
       <directory value="$PROJECT_DIR$" />
       <method v="2" />
     </configuration>
-    <configuration name="go build main.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
-      <module name="chirograph" />
-      <working_directory value="$PROJECT_DIR$" />
-      <kind value="FILE" />
-      <filePath value="$PROJECT_DIR$/tallystick/main.go" />
-      <package value="tallystick" />
-      <directory value="$PROJECT_DIR$" />
-      <method v="2" />
-    </configuration>
-    <configuration name="go build tallystick.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
-      <module name="chirograph" />
-      <working_directory value="$PROJECT_DIR$" />
-      <kind value="FILE" />
-      <filePath value="$PROJECT_DIR$/tallystick.go" />
-      <package value="tallystick" />
-      <directory value="$PROJECT_DIR$" />
-      <method v="2" />
-    </configuration>
-    <list>
-      <item itemvalue="Go Build.go build main.go" />
-      <item itemvalue="Go Build.go build chirograph.go" />
-      <item itemvalue="Go Build.go build main.go fr" />
-      <item itemvalue="Go Build.go build tallystick.go" />
-    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Go Build.go build main.go fr" />
         <item itemvalue="Go Build.go build chirograph.go" />
-        <item itemvalue="Go Build.go build main.go" />
-        <item itemvalue="Go Build.go build tallystick.go" />
       </list>
     </recent_temporary>
   </component>

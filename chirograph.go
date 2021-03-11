@@ -79,6 +79,11 @@ type Chirograph struct {
 	MailToContentLeft string
 	MailToContentRight string
 
+	TopHelper string
+	LeftHelper string
+	RightHelper string
+	BottomHelper string
+
 }
 
 func drawUncopiedLogo(fontFamily *canvas.FontFamily, ctx *canvas.Context, hBlock float64, vBlock float64, rotate bool, mailToContent string ) {
@@ -325,7 +330,13 @@ func drawTally(fontFamily *canvas.FontFamily, ctx *canvas.Context, t *Chirograph
 	drawText(fontFamily, ctx, 6, 3, 1, t.SecondaryLinkURL, false, canvas.Right, canvas.Bottom,false, fontSizeSmall)
 	drawText(fontFamily, ctx, 6, 5, 1, t.SecondaryLinkURL,false,  canvas.Right, canvas.Bottom,false, fontSizeSmall)
 
+	drawText(fontFamily, ctx, 0, 7, 9, t.TopHelper,false,  canvas.Left, canvas.Top,false, fontSizeNormal)
+	drawText(fontFamily, ctx, 0, -1, 9, t.BottomHelper,false,  canvas.Left, canvas.Bottom,false, fontSizeNormal)
+	drawText(fontFamily, ctx, -1, 6, 6, t.LeftHelper,true,  canvas.Center, canvas.Center,false, fontSizeNormal)
+	drawText(fontFamily, ctx, 9, 6, 6, t.RightHelper,true,  canvas.Center, canvas.Center,false, fontSizeNormal)
+
 	drawCutLine(ctx)
+
 }
 
 
