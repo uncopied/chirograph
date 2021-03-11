@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"github.com/tdewolff/canvas/pdf"
 	"github.com/tdewolff/canvas/svg"
-	"github.com/uncopied/tallystick"
+	"github.com/uncopied/chirograph"
 	"log"
 	"os"
 	"strings"
