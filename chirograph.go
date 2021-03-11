@@ -5,7 +5,7 @@ import (
 	"github.com/tdewolff/canvas"
 	"github.com/tdewolff/canvas/pdf"
 	"github.com/tdewolff/canvas/svg"
-	qrcode "github.com/uncopied/go-qrcode"
+	"github.com/uncopied/go-qrcode"
 	"io"
 	"log"
 	"math"
@@ -153,7 +153,7 @@ func drawBarCode128(ctx *canvas.Context, hBlock float64, vBlock float64, wBlock 
 	}
 }
 
-func addRandomCenteredPoint(p *canvas.Polyline, hBlock float64, vBlock float64, topOrRight bool) [2]float64 {
+func addRandomCenteredPoint(p *canvas.Polyline, hBlock float64, vBlock float64) [2]float64 {
 	var xy [2]float64
 	xy[0] = tallyX +hBlock*blockWidth +(0.5-randCutWidth*rand.Float64())*blockWidth
 	xy[1] = tallyY +vBlock*blockHeight +(0.5-randCutHeight*rand.Float64())*blockHeight
@@ -202,11 +202,11 @@ func drawCutLine(ctx *canvas.Context) {
 	polyline = &canvas.Polyline{}
 	polyline.Add(tallyX+blockWidth*1.5, tallyY)
 	addRandomZigZagPoints(polyline, 1,0, true)
-	addRandomCenteredPoint(polyline, 1,1,true)
+	addRandomCenteredPoint(polyline, 1, 1)
 	cbd1 := addRandomZigZagPoints(polyline, 1,2, true)
-	addRandomCenteredPoint(polyline, 1,3,true)
+	addRandomCenteredPoint(polyline, 1, 3)
 	abd1 := addRandomZigZagPoints(polyline, 1,4, true)
-	addRandomCenteredPoint(polyline, 1,5,true)
+	addRandomCenteredPoint(polyline, 1, 5)
 	addRandomZigZagPoints(polyline, 1,6,true)
 	polyline.Add(tallyX+blockWidth*1.5, tallyY+blockHeight*vBlocks)
 	ctx.DrawPath(0, 0, polyline.ToPath())
@@ -215,11 +215,11 @@ func drawCutLine(ctx *canvas.Context) {
 	polyline = &canvas.Polyline{}
 	polyline.Add(tallyX+blockWidth*7.5, tallyY)
 	addRandomZigZagPoints(polyline, 7,0,true)
-	addRandomCenteredPoint(polyline, 7,1,true)
+	addRandomCenteredPoint(polyline, 7, 1)
 	cbd2 := addRandomZigZagPoints(polyline,7,2, true)
-	addRandomCenteredPoint(polyline, 7,3,true)
+	addRandomCenteredPoint(polyline, 7, 3)
 	abd2 := addRandomZigZagPoints(polyline,7,4, true)
-	addRandomCenteredPoint(polyline, 7,5,true)
+	addRandomCenteredPoint(polyline, 7, 5)
 	addRandomZigZagPoints(polyline, 7,6,true)
 	polyline.Add(tallyX+blockWidth*7.5, tallyY+blockHeight*vBlocks)
 	ctx.DrawPath(0, 0, polyline.ToPath())
@@ -229,7 +229,7 @@ func drawCutLine(ctx *canvas.Context) {
 	polyline.Add(cbd1[0], cbd1[1])
 	addRandomZigZagPoints(polyline, 2,2,false)
 	addRandomZigZagPoints(polyline, 3,2,false)
-	addRandomCenteredPoint(polyline,4,2, false)
+	addRandomCenteredPoint(polyline, 4, 2)
 	addRandomZigZagPoints(polyline,5,2, false)
 	addRandomZigZagPoints(polyline,6,2, false)
 	polyline.Add(cbd2[0], cbd2[1])
@@ -240,7 +240,7 @@ func drawCutLine(ctx *canvas.Context) {
 	polyline.Add(abd1[0], abd1[1])
 	addRandomZigZagPoints(polyline, 2,4,false)
 	addRandomZigZagPoints(polyline, 3,4,false)
-	addRandomCenteredPoint(polyline,4,4, false)
+	addRandomCenteredPoint(polyline, 4, 4)
 	addRandomZigZagPoints(polyline,5,4, false)
 	addRandomZigZagPoints(polyline,6,4, false)
 	polyline.Add(abd2[0], abd2[1])
@@ -328,20 +328,21 @@ func drawTally(fontFamily *canvas.FontFamily, ctx *canvas.Context, t *Chirograph
 	drawCutLine(ctx)
 }
 
+
 func DrawSVG(t *Chirograph, w io.Writer) error {
 	c := Draw(t)
-	svg := svg.New(w, c.W, c.H)
-	c.Render(svg)
-	return svg.Close()
+	svgDoc := svg.New(w, c.W, c.H)
+	c.Render(svgDoc)
+	return svgDoc.Close()
 }
 
 //c.WriteFile("canvas_out.svg", svg.Writer)
 //c.WriteFile("canvas_out.pdf", pdf.Writer)
 func DrawPDF(t *Chirograph, w io.Writer) error {
 	c := Draw(t)
-	pdf := pdf.New(w, c.W, c.H)
-	c.Render(pdf)
-	return pdf.Close()
+	pdfDoc := pdf.New(w, c.W, c.H)
+	c.Render(pdfDoc)
+	return pdfDoc.Close()
 }
 
 func Draw(t *Chirograph) *canvas.Canvas {
