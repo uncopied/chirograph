@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9f09129c-892f-4e54-94e0-8b6ae078d043" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tallystick.go" beforeDir="false" afterPath="$PROJECT_DIR$/chirograph.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tallystick/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/chirograph/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,6 +82,7 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Go Build.go build main.go" />
       <item itemvalue="Go Build.go build chirograph.go" />
       <item itemvalue="Go Build.go build main.go fr" />
       <item itemvalue="Go Build.go build tallystick.go" />
@@ -111,6 +110,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
