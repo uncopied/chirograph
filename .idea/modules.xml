@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/tallystick.iml" filepath="$PROJECT_DIR$/.idea/tallystick.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/chirograph.iml" filepath="$PROJECT_DIR$/.idea/chirograph.iml" />
     </modules>
   </component>
 </project>
