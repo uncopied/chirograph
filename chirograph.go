@@ -3,8 +3,8 @@ package chirograph
 import (
 	"github.com/boombuler/barcode/code128"
 	"github.com/tdewolff/canvas"
-	"github.com/tdewolff/canvas/pdf"
-	"github.com/tdewolff/canvas/svg"
+	"github.com/tdewolff/canvas/renderers/pdf"
+	"github.com/tdewolff/canvas/renderers/svg"
 	"github.com/uncopied/go-qrcode"
 	"io"
 	"log"
@@ -89,7 +89,7 @@ type Chirograph struct {
 func drawUncopiedLogo(fontFamily *canvas.FontFamily, ctx *canvas.Context, hBlock float64, vBlock float64, rotate bool, mailToContent string ) {
 	// Draw a comprehensive text box
 	face := fontFamily.Face(fontSizeSmall, canvas.Black, canvas.FontBold, canvas.FontNormal)
-	rich := canvas.NewRichText()
+	rich := canvas.NewRichText(face)
 	rich.Add(face, mailToContent)
 	//metrics := face.Metrics()
 
@@ -116,7 +116,7 @@ func drawUncopiedLogo(fontFamily *canvas.FontFamily, ctx *canvas.Context, hBlock
 func drawText(fontFamily *canvas.FontFamily, ctx *canvas.Context, hBlock float64, vBlock float64, wBlock float64, textContent string, rotate bool, hAlign canvas.TextAlign, vAlign canvas.TextAlign, whiteOrTransparent bool, fontSize float64) {
 	// Draw a comprehensive text box
 	face := fontFamily.Face(fontSize, canvas.Black, canvas.FontBold, canvas.FontNormal)
-	rich := canvas.NewRichText()
+	rich := canvas.NewRichText(face)
 	rich.Add(face, textContent)
 	//metrics := face.Metrics()
 	if whiteOrTransparent {
@@ -369,7 +369,7 @@ func Draw(t *Chirograph) *canvas.Canvas {
 	c := canvas.New(pageWidth, pageHeight)
 	ctx := canvas.NewContext(c)
 	fontFamily := canvas.NewFontFamily(fontFamilyName)
-	fontFamily.Use(canvas.CommonLigatures)
+	//fontFamily.Use(canvas.CommonLigatures)
 	if err := fontFamily.LoadFontFile(fontFileRegular, canvas.FontRegular); err != nil {
 		panic(err)
 	}

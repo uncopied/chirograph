@@ -3,14 +3,16 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/tdewolff/canvas/pdf"
-	"github.com/tdewolff/canvas/svg"
+	"github.com/tdewolff/canvas/renderers/pdf"
+	"github.com/tdewolff/canvas/renderers/svg"
 	"github.com/uncopied/chirograph"
 	"log"
 	"os"
 	"strings"
 )
 
+// go get github.com/tdewolff/canvas@latest
+// go get github.com/uncopied/go-qrcode@latest
 func main() {
 	outFile := flag.String("o", "out", "output file prefix, empty for stdout")
 	outFormat := flag.String("f", "pdf", "output file format (svg or pdf)")

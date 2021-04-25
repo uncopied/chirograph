@@ -5,13 +5,15 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chirograph.go" beforeDir="false" afterPath="$PROJECT_DIR$/chirograph.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chirograph/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/chirograph/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="GOROOT" url="file://$PROJECT_DIR$/../../Go" />
+  <component name="GOROOT" url="file:///usr/local/go" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -28,7 +30,8 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="go.import.settings.migrated" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="go.sdk.automatically.set" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../go-qrcode" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -44,14 +47,14 @@
       <recent name="D:\git\chirograph" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Go Build.go build main.go fr">
     <configuration name="go build chirograph.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="chirograph" />
       <working_directory value="$PROJECT_DIR$" />
       <kind value="FILE" />
-      <filePath value="$PROJECT_DIR$/chirograph.go" />
       <package value="chirograph" />
       <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/chirograph.go" />
       <method v="2" />
     </configuration>
     <configuration name="go build main.go fr" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
@@ -59,9 +62,9 @@
       <working_directory value="$PROJECT_DIR$" />
       <parameters value="-o out Bonjour la France!" />
       <kind value="FILE" />
-      <filePath value="$PROJECT_DIR$/chirograph/main.go" />
       <package value="github.com/uncopied/chirograph" />
       <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/chirograph/main.go" />
       <method v="2" />
     </configuration>
     <recent_temporary>
