@@ -63,6 +63,8 @@ github.com/tdewolff/canvas v0.0.0-20210210144621-f73efe64c447 h1:B3S9xVwEomxOtt5
 github.com/tdewolff/canvas v0.0.0-20210210144621-f73efe64c447/go.mod h1:zxolFKrmrnKN/xRke7NHKrBYklcUm1yhti5cNhOi3DI=
 github.com/tdewolff/canvas v0.0.0-20210423005539-2093b39b633b h1:/iae/xsc54yvNP8q6jA9Tvfa4yAJf/7vHHm2sXAHpSE=
 github.com/tdewolff/canvas v0.0.0-20210423005539-2093b39b633b/go.mod h1:+oSTfeTidgG9RI4dRPThBZJzAv9Q8ZsBBsPmW1mkDFY=
+github.com/tdewolff/canvas v0.0.0-20210426181522-cf0a904ed34e h1:hsIAqtKcyPJ/X9tJLosfWXy2u+KPkgFecDPmkQJz1J0=
+github.com/tdewolff/canvas v0.0.0-20210426181522-cf0a904ed34e/go.mod h1:+oSTfeTidgG9RI4dRPThBZJzAv9Q8ZsBBsPmW1mkDFY=
 github.com/tdewolff/minify/v2 v2.9.5/go.mod h1:jshtBj/uUJH6JX1fuxTLnnHOA1RVJhF5MM+leJzDKb4=
 github.com/tdewolff/minify/v2 v2.9.10 h1:p+ifTTl+JMFFLDYNAm7nxQ9XuCG10HTW00wlPAZ7aoE=
 github.com/tdewolff/minify/v2 v2.9.10/go.mod h1:U1Nc+/YBSB0FPEarqcgkYH3Ep4DNyyIbOyl5P4eWMuo=
