@@ -43,6 +43,18 @@ The technology is intended to
 * warranty unicity of original artworks
 * secure [museum collections](https://uncopied.art/blog/blockchain-museum-collection-inventory/)
 
+## Typical use of the chirograph
+This is a chirograph by UNCOPIED with 5 parts (CENTER,TOP,BOTTOM,LEFT,RIGHT):
+-1 Print it on quality 100+ gram paper (ex. C by Clairfontaine recommended https: uncopied.art blog papers or other ISO- 706).
+-2 Cut it using scissors into 5 parts along the blue lines (slight imperfections are OK, make it unique and tamper-proof).
+-3 Optionally, add your own identical physical mark or signature to each of the 5 parts (without corrupting the QR Codes).
+-4 Glue its CENTER part to the back of your painting or limited edition print (ex. 3M recommended https: uncopied.art blog glues).
+-5 Glue the other 4 parts to each 4 copies of the legal documentation (make sure labels correspond).
+-6 Retain one copy of the legal document (the one with the TOP chirograph part).
+-7 Send one copy of the legal document to the other contracting party (the one with the BOTTOM chirograph part).
+-8 Send the other two copies of the legal documents to UNCOPIED PO Box by post (the ones with LEFT and RIGHT chirograph parts).
+
+
 UNCOPIED is a registered trademark. UNCOPIED chirographs are Design Patented. 
 
 
