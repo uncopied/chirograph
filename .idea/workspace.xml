@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9f09129c-892f-4e54-94e0-8b6ae078d043" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="9f09129c-892f-4e54-94e0-8b6ae078d043" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="GOROOT" url="file:///usr/local/go" />
+  <component name="GOROOT" url="file://C:/Program Files/Go" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -48,9 +46,9 @@
       <module name="chirograph" />
       <working_directory value="$PROJECT_DIR$" />
       <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/chirograph.go" />
       <package value="chirograph" />
       <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$/chirograph.go" />
       <method v="2" />
     </configuration>
     <configuration name="go build main.go fr" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
@@ -58,9 +56,9 @@
       <working_directory value="$PROJECT_DIR$" />
       <parameters value="-o out Bonjour la France!" />
       <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/chirograph/main.go" />
       <package value="github.com/uncopied/chirograph" />
       <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$/chirograph/main.go" />
       <method v="2" />
     </configuration>
     <recent_temporary>
